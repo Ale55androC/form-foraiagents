@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cam's AI — Member Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Manrope', system-ui, sans-serif;
+            background: radial-gradient(circle at center, #1A0B2E 0%, #000000 100%);
+            color: #F0F0F0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 560px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            background: linear-gradient(90deg, #D8D8D8 0%, #808080 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .header p {
+            color: #808080;
+            font-size: 15px;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+        .form-group {
+            margin-bottom: 24px;
+        }
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #C0C0C0;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(26, 11, 46, 0.6);
+            border: 1px solid rgba(147, 51, 234, 0.2);
+            border-radius: 8px;
+            color: #F0F0F0;
+            font-size: 15px;
+            font-family: 'Manrope', system-ui, sans-serif;
+            font-weight: 500;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: rgba(147, 51, 234, 0.6);
+            box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.15);
+        }
+        input::placeholder, textarea::placeholder {
+            color: #404040;
+            font-weight: 400;
+        }
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23808080' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 40px;
+        }
+        select option {
+            background: #1A0B2E;
+            color: #F0F0F0;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(90deg, #D8D8D8 0%, #C0C0C0 100%);
+            color: #1A0B2E;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            font-family: 'Manrope', system-ui, sans-serif;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.1s;
+            margin-top: 8px;
+        }
+        .submit-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+        .submit-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .success {
+            display: none;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .success h2 {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            background: linear-gradient(90deg, #D8D8D8 0%, #808080 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .success p {
+            color: #808080;
+            font-size: 15px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+        .success .checkmark {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: rgba(147, 51, 234, 0.2);
+            border: 2px solid rgba(147, 51, 234, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin: 0 auto 20px;
+        }
+        .error-msg {
+            color: #ff4444;
+            font-size: 13px;
+            margin-top: 8px;
+            display: none;
+            font-weight: 500;
+        }
+        .required { color: #404040; font-weight: 400; }
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(147, 51, 234, 0.3), transparent);
+            margin: 32px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Cam's AI — Member Profile</h1>
+            <p>Fill this out once so the AI knows your situation and gives you personalized advice every time. Takes 2 minutes.</p>
+        </div>
+
+        <form id="profileForm">
+            <div class="form-group">
+                <label>Your Slack Username <span class="required">*</span></label>
+                <input type="text" name="slack_user_id" required placeholder="e.g. seanreynolds" />
+            </div>
+
+            <div class="form-group">
+                <label>Your Full Name <span class="required">*</span></label>
+                <input type="text" name="name" required placeholder="e.g. Sean Reynolds" />
+            </div>
+
+            <div class="form-group">
+                <label>Agency Name <span class="required">*</span></label>
+                <input type="text" name="agency_name" required placeholder="e.g. Reynolds Media" />
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="form-group">
+                <label>What niche are you in? <span class="required">*</span></label>
+                <input type="text" name="niche" required placeholder="e.g. Remodeling, MedSpa, Roofing" />
+            </div>
+
+            <div class="form-group">
+                <label>Current Monthly Revenue <span class="required">*</span></label>
+                <select name="monthly_revenue" required>
+                    <option value="" disabled selected>Select your range</option>
+                    <option value="$0 - Pre-revenue">$0 - Pre-revenue</option>
+                    <option value="$1k - $5k">$1k - $5k</option>
+                    <option value="$5k - $10k">$5k - $10k</option>
+                    <option value="$10k - $20k">$10k - $20k</option>
+                    <option value="$20k - $50k">$20k - $50k</option>
+                    <option value="$50k - $100k">$50k - $100k</option>
+                    <option value="$100k+">$100k+</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>How many active clients do you have? <span class="required">*</span></label>
+                <input type="text" name="num_clients" required placeholder="e.g. 4" />
+            </div>
+
+            <div class="form-group">
+                <label>What do you charge per client monthly? <span class="required">*</span></label>
+                <input type="text" name="retainer_price" required placeholder="e.g. $2,500/mo" />
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="form-group">
+                <label>Describe your current team <span class="required">*</span></label>
+                <textarea name="team_setup" required placeholder="e.g. Just me + 1 VA from Philippines + 1 part-time closer"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Biggest challenge right now <span class="required">*</span></label>
+                <textarea name="biggest_challenge" required placeholder="e.g. Can't seem to close past 20% on sales calls, losing leads after first contact"></textarea>
+            </div>
+
+            <div class="error-msg" id="errorMsg"></div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">Submit Profile</button>
+        </form>
+
+        <div class="success" id="successMsg">
+            <div class="checkmark">&#10003;</div>
+            <h2>You're all set!</h2>
+            <p>Cam's AI now knows your situation and will personalize every answer for you. Go ask it something in Slack.</p>
+        </div>
+    </div>
+
+    <script>
+        const SUPABASE_URL = 'https://rerxuznivlhckzubwnko.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJlcnh1em5pdmxoY2t6dWJ3bmtvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ5NzcwMzAsImV4cCI6MjA3MDU1MzAzMH0.tkVIN1OsToWtRSf-9yh9ZrT5c8nzcGciDbztkEQkgMg';
+
+        document.getElementById('profileForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const btn = document.getElementById('submitBtn');
+            const errorMsg = document.getElementById('errorMsg');
+            btn.disabled = true;
+            btn.textContent = 'Saving...';
+            errorMsg.style.display = 'none';
+
+            const formData = new FormData(e.target);
+            const data = {};
+            formData.forEach((val, key) => {
+                data[key] = val.trim();
+            });
+
+            data.slack_user_id = data.slack_user_id.toLowerCase().replace('@', '');
+
+            try {
+                const resp = await fetch(`${SUPABASE_URL}/rest/v1/slack_member_profiles`, {
+                    method: 'POST',
+                    headers: {
+                        'apikey': SUPABASE_ANON_KEY,
+                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                        'Content-Type': 'application/json',
+                        'Prefer': 'resolution=merge-duplicates'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (!resp.ok) {
+                    const err = await resp.text();
+                    throw new Error(err);
+                }
+
+                document.getElementById('profileForm').style.display = 'none';
+                document.getElementById('successMsg').style.display = 'block';
+            } catch (err) {
+                errorMsg.textContent = 'Something went wrong. Please try again.';
+                errorMsg.style.display = 'block';
+                btn.disabled = false;
+                btn.textContent = 'Submit Profile';
+                console.error(err);
+            }
+        });
+    </script>
+</body>
+</html>
