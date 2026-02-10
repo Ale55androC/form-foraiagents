@@ -9,232 +9,264 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
             font-family: 'Manrope', system-ui, sans-serif;
-            background: radial-gradient(circle at center, #1A0B2E 0%, #000000 100%);
+            background: #000;
             color: #F0F0F0;
             min-height: 100vh;
             display: flex;
+            align-items: center;
             justify-content: center;
-            padding: 40px 20px;
         }
-        .container {
+
+        .page {
             width: 100%;
-            max-width: 560px;
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .header h1 {
-            font-size: 28px;
-            font-weight: 800;
-            margin-bottom: 8px;
-            background: linear-gradient(90deg, #D8D8D8 0%, #808080 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .header p {
-            color: #808080;
-            font-size: 15px;
-            line-height: 1.5;
-            font-weight: 500;
-        }
-        .form-group {
-            margin-bottom: 24px;
-        }
-        label {
-            display: block;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #C0C0C0;
-        }
-        input, select, textarea {
-            width: 100%;
-            padding: 12px 16px;
-            background: rgba(26, 11, 46, 0.6);
-            border: 1px solid rgba(147, 51, 234, 0.2);
-            border-radius: 8px;
-            color: #F0F0F0;
-            font-size: 15px;
-            font-family: 'Manrope', system-ui, sans-serif;
-            font-weight: 500;
-            transition: border-color 0.2s, box-shadow 0.2s;
-        }
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: rgba(147, 51, 234, 0.6);
-            box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.15);
-        }
-        input::placeholder, textarea::placeholder {
-            color: #404040;
-            font-weight: 400;
-        }
-        select {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23808080' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 16px center;
-            padding-right: 40px;
-        }
-        select option {
-            background: #1A0B2E;
-            color: #F0F0F0;
-        }
-        textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-        .submit-btn {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(90deg, #D8D8D8 0%, #C0C0C0 100%);
-            color: #1A0B2E;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 700;
-            font-family: 'Manrope', system-ui, sans-serif;
-            cursor: pointer;
-            transition: opacity 0.2s, transform 0.1s;
-            margin-top: 8px;
-        }
-        .submit-btn:hover {
-            opacity: 0.9;
-            transform: translateY(-1px);
-        }
-        .submit-btn:active {
-            transform: translateY(0);
-        }
-        .submit-btn:disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-            transform: none;
-        }
-        .success {
-            display: none;
-            text-align: center;
-            padding: 60px 20px;
-        }
-        .success h2 {
-            font-size: 24px;
-            font-weight: 800;
-            margin-bottom: 12px;
-            background: linear-gradient(90deg, #D8D8D8 0%, #808080 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .success p {
-            color: #808080;
-            font-size: 15px;
-            line-height: 1.6;
-            font-weight: 500;
-        }
-        .success .checkmark {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            background: rgba(147, 51, 234, 0.2);
-            border: 2px solid rgba(147, 51, 234, 0.4);
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
-            margin: 0 auto 20px;
+            background: radial-gradient(ellipse at 50% 0%, rgba(59, 7, 100, 0.4) 0%, transparent 60%),
+                        radial-gradient(ellipse at 50% 100%, rgba(26, 11, 46, 0.3) 0%, transparent 50%),
+                        #000;
+            padding: 60px 24px;
         }
+
+        .card {
+            width: 100%;
+            max-width: 480px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 40px 32px;
+            backdrop-filter: blur(20px);
+        }
+
+        @media (max-width: 540px) {
+            .card { padding: 32px 20px; }
+            .page { padding: 24px 16px; }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #999;
+            letter-spacing: 0.01em;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 11px 14px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            color: #F0F0F0;
+            font-size: 15px;
+            font-family: 'Manrope', system-ui, sans-serif;
+            font-weight: 500;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: rgba(147, 51, 234, 0.5);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #383838;
+            font-weight: 400;
+        }
+
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 36px;
+            cursor: pointer;
+        }
+
+        select option {
+            background: #111;
+            color: #F0F0F0;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 72px;
+        }
+
+        .divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.05);
+            margin: 28px 0;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 13px;
+            background: #fff;
+            color: #000;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            font-family: 'Manrope', system-ui, sans-serif;
+            cursor: pointer;
+            transition: opacity 0.15s;
+            margin-top: 4px;
+        }
+
+        .submit-btn:hover { opacity: 0.85; }
+        .submit-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        .success {
+            display: none;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .success .check {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(34, 197, 94, 0.1);
+            border: 2px solid rgba(34, 197, 94, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 0 auto 20px;
+            color: #22c55e;
+        }
+
+        .success h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .success p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
         .error-msg {
-            color: #ff4444;
+            color: #ef4444;
             font-size: 13px;
             margin-top: 8px;
             display: none;
             font-weight: 500;
         }
-        .required { color: #404040; font-weight: 400; }
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(147, 51, 234, 0.3), transparent);
-            margin: 32px 0;
-        }
+
+        .required { color: #333; font-weight: 400; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Cam's AI — Member Profile</h1>
-            <p>Fill this out once so the AI knows your situation and gives you personalized advice every time. Takes 2 minutes.</p>
-        </div>
-
-        <form id="profileForm">
-            <div class="form-group">
-                <label>Your Slack Username <span class="required">*</span></label>
-                <input type="text" name="slack_user_id" required placeholder="e.g. seanreynolds" />
+    <div class="page">
+        <div class="card">
+            <div class="header">
+                <h1>Cam's AI — Member Profile</h1>
+                <p>Fill this out once so the AI knows your situation and gives you personalized advice. Takes 2 minutes.</p>
             </div>
 
-            <div class="form-group">
-                <label>Your Full Name <span class="required">*</span></label>
-                <input type="text" name="name" required placeholder="e.g. Sean Reynolds" />
+            <form id="profileForm">
+                <div class="form-group">
+                    <label>Slack Username <span class="required">*</span></label>
+                    <input type="text" name="slack_user_id" required placeholder="seanreynolds" />
+                </div>
+
+                <div class="form-group">
+                    <label>Full Name <span class="required">*</span></label>
+                    <input type="text" name="name" required placeholder="Sean Reynolds" />
+                </div>
+
+                <div class="form-group">
+                    <label>Agency Name <span class="required">*</span></label>
+                    <input type="text" name="agency_name" required placeholder="Reynolds Media" />
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="form-group">
+                    <label>Niche <span class="required">*</span></label>
+                    <input type="text" name="niche" required placeholder="Remodeling, MedSpa, Roofing..." />
+                </div>
+
+                <div class="form-group">
+                    <label>Monthly Revenue <span class="required">*</span></label>
+                    <select name="monthly_revenue" required>
+                        <option value="" disabled selected>Select range</option>
+                        <option value="$0 - Pre-revenue">$0 - Pre-revenue</option>
+                        <option value="$1k - $5k">$1k - $5k</option>
+                        <option value="$5k - $10k">$5k - $10k</option>
+                        <option value="$10k - $20k">$10k - $20k</option>
+                        <option value="$20k - $50k">$20k - $50k</option>
+                        <option value="$50k - $100k">$50k - $100k</option>
+                        <option value="$100k+">$100k+</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Active Clients <span class="required">*</span></label>
+                    <input type="text" name="num_clients" required placeholder="4" />
+                </div>
+
+                <div class="form-group">
+                    <label>Monthly Retainer Per Client <span class="required">*</span></label>
+                    <input type="text" name="retainer_price" required placeholder="$2,500/mo" />
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="form-group">
+                    <label>Current Team <span class="required">*</span></label>
+                    <textarea name="team_setup" required placeholder="Just me + 1 VA from Philippines + 1 part-time closer"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Biggest Challenge <span class="required">*</span></label>
+                    <textarea name="biggest_challenge" required placeholder="Can't close past 20% on sales calls, losing leads after first contact"></textarea>
+                </div>
+
+                <div class="error-msg" id="errorMsg"></div>
+                <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
+            </form>
+
+            <div class="success" id="successMsg">
+                <div class="check">&#10003;</div>
+                <h2>You're all set</h2>
+                <p>Cam's AI now knows your situation. Go ask it something in Slack — it'll know your niche, revenue, team, everything.</p>
             </div>
-
-            <div class="form-group">
-                <label>Agency Name <span class="required">*</span></label>
-                <input type="text" name="agency_name" required placeholder="e.g. Reynolds Media" />
-            </div>
-
-            <div class="divider"></div>
-
-            <div class="form-group">
-                <label>What niche are you in? <span class="required">*</span></label>
-                <input type="text" name="niche" required placeholder="e.g. Remodeling, MedSpa, Roofing" />
-            </div>
-
-            <div class="form-group">
-                <label>Current Monthly Revenue <span class="required">*</span></label>
-                <select name="monthly_revenue" required>
-                    <option value="" disabled selected>Select your range</option>
-                    <option value="$0 - Pre-revenue">$0 - Pre-revenue</option>
-                    <option value="$1k - $5k">$1k - $5k</option>
-                    <option value="$5k - $10k">$5k - $10k</option>
-                    <option value="$10k - $20k">$10k - $20k</option>
-                    <option value="$20k - $50k">$20k - $50k</option>
-                    <option value="$50k - $100k">$50k - $100k</option>
-                    <option value="$100k+">$100k+</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label>How many active clients do you have? <span class="required">*</span></label>
-                <input type="text" name="num_clients" required placeholder="e.g. 4" />
-            </div>
-
-            <div class="form-group">
-                <label>What do you charge per client monthly? <span class="required">*</span></label>
-                <input type="text" name="retainer_price" required placeholder="e.g. $2,500/mo" />
-            </div>
-
-            <div class="divider"></div>
-
-            <div class="form-group">
-                <label>Describe your current team <span class="required">*</span></label>
-                <textarea name="team_setup" required placeholder="e.g. Just me + 1 VA from Philippines + 1 part-time closer"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label>Biggest challenge right now <span class="required">*</span></label>
-                <textarea name="biggest_challenge" required placeholder="e.g. Can't seem to close past 20% on sales calls, losing leads after first contact"></textarea>
-            </div>
-
-            <div class="error-msg" id="errorMsg"></div>
-
-            <button type="submit" class="submit-btn" id="submitBtn">Submit Profile</button>
-        </form>
-
-        <div class="success" id="successMsg">
-            <div class="checkmark">&#10003;</div>
-            <h2>You're all set!</h2>
-            <p>Cam's AI now knows your situation and will personalize every answer for you. Go ask it something in Slack.</p>
         </div>
     </div>
 
@@ -244,7 +276,6 @@
 
         document.getElementById('profileForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-
             const btn = document.getElementById('submitBtn');
             const errorMsg = document.getElementById('errorMsg');
             btn.disabled = true;
@@ -253,10 +284,7 @@
 
             const formData = new FormData(e.target);
             const data = {};
-            formData.forEach((val, key) => {
-                data[key] = val.trim();
-            });
-
+            formData.forEach((val, key) => { data[key] = val.trim(); });
             data.slack_user_id = data.slack_user_id.toLowerCase().replace('@', '');
 
             try {
@@ -270,19 +298,14 @@
                     },
                     body: JSON.stringify(data)
                 });
-
-                if (!resp.ok) {
-                    const err = await resp.text();
-                    throw new Error(err);
-                }
-
+                if (!resp.ok) throw new Error(await resp.text());
                 document.getElementById('profileForm').style.display = 'none';
                 document.getElementById('successMsg').style.display = 'block';
             } catch (err) {
                 errorMsg.textContent = 'Something went wrong. Please try again.';
                 errorMsg.style.display = 'block';
                 btn.disabled = false;
-                btn.textContent = 'Submit Profile';
+                btn.textContent = 'Submit';
                 console.error(err);
             }
         });
