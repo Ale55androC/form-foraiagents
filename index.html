@@ -22,34 +22,33 @@
 
         .page {
             width: 100%;
-            max-width: 1280px;
-            margin: 0 auto;
             min-height: 100vh;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            padding: 48px 48px;
-            align-items: start;
         }
 
-        /* Left side - Video / Info */
+        /* Left side - sticky info panel */
         .left-panel {
             position: sticky;
-            top: 48px;
+            top: 0;
+            height: 100vh;
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            padding: 60px 60px;
             gap: 28px;
+            border-right: 1px solid rgba(255, 255, 255, 0.06);
         }
 
         .logo img {
             height: auto;
-            width: 260px;
+            width: 280px;
             max-width: 100%;
             object-fit: contain;
         }
 
         .left-panel h1 {
-            font-size: 32px;
+            font-size: 36px;
             font-weight: 800;
             color: #fff;
             letter-spacing: -0.02em;
@@ -59,12 +58,14 @@
         .left-panel .subtitle {
             color: #888;
             font-size: 16px;
-            line-height: 1.6;
+            line-height: 1.7;
             font-weight: 500;
+            max-width: 480px;
         }
 
         .video-placeholder {
             width: 100%;
+            max-width: 480px;
             aspect-ratio: 16 / 9;
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -99,33 +100,33 @@
         }
 
         /* Right side - Form */
-        .form-panel {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 40px 36px;
-            backdrop-filter: blur(20px);
+        .right-panel {
+            padding: 48px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 100vh;
         }
 
         .form-header {
-            margin-bottom: 28px;
+            margin-bottom: 32px;
         }
         .form-header h2 {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 700;
             color: #fff;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
         }
         .form-header p {
             color: #666;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 500;
         }
 
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 16px 20px;
+            gap: 18px 24px;
         }
         .full-width { grid-column: 1 / -1; }
 
@@ -133,7 +134,7 @@
             display: block;
             font-size: 12px;
             font-weight: 700;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
             color: #aaa;
             text-transform: uppercase;
             letter-spacing: 0.04em;
@@ -141,12 +142,12 @@
 
         input, select, textarea {
             width: 100%;
-            padding: 10px 13px;
+            padding: 12px 14px;
             background: rgba(255, 255, 255, 0.07);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             color: #F0F0F0;
-            font-size: 14px;
+            font-size: 15px;
             font-family: 'Manrope', system-ui, sans-serif;
             font-weight: 500;
             transition: border-color 0.2s, background 0.2s;
@@ -157,19 +158,19 @@
             background: rgba(255, 255, 255, 0.09);
         }
         input::placeholder, textarea::placeholder {
-            color: #777;
+            color: #666;
             font-weight: 400;
         }
         select {
             appearance: none;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23777' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
-            background-position: right 12px center;
-            padding-right: 32px;
+            background-position: right 14px center;
+            padding-right: 36px;
             cursor: pointer;
         }
         select option { background: #1a1025; color: #F0F0F0; }
-        textarea { resize: vertical; min-height: 64px; }
+        textarea { resize: vertical; min-height: 80px; }
 
         .section-label {
             grid-column: 1 / -1;
@@ -178,23 +179,23 @@
             color: #555;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            padding-top: 8px;
+            padding-top: 10px;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .submit-btn {
             grid-column: 1 / -1;
-            padding: 14px 24px;
+            padding: 16px 24px;
             background: linear-gradient(135deg, #9333ea, #7c3aed);
             color: #fff;
             border: none;
-            border-radius: 10px;
-            font-size: 15px;
+            border-radius: 12px;
+            font-size: 16px;
             font-weight: 700;
             font-family: 'Manrope', system-ui, sans-serif;
             cursor: pointer;
             transition: all 0.2s;
-            margin-top: 12px;
+            margin-top: 16px;
             letter-spacing: 0.02em;
             box-shadow: 0 4px 20px rgba(147, 51, 234, 0.3);
         }
@@ -204,20 +205,20 @@
         .success {
             display: none;
             text-align: center;
-            padding: 40px 0;
+            padding: 60px 0;
         }
         .success .check {
-            width: 52px; height: 52px;
+            width: 60px; height: 60px;
             border-radius: 50%;
             background: rgba(34, 197, 94, 0.1);
             border: 2px solid rgba(34, 197, 94, 0.3);
             display: flex; align-items: center; justify-content: center;
-            font-size: 22px;
-            margin: 0 auto 16px;
+            font-size: 26px;
+            margin: 0 auto 20px;
             color: #22c55e;
         }
-        .success h2 { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 6px; }
-        .success p { color: #777; font-size: 14px; line-height: 1.6; }
+        .success h2 { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+        .success p { color: #777; font-size: 15px; line-height: 1.6; }
 
         .error-msg {
             grid-column: 1 / -1;
@@ -231,7 +232,7 @@
         .slack-hint {
             font-size: 11px;
             color: #555;
-            margin-top: 4px;
+            margin-top: 5px;
             line-height: 1.4;
         }
 
@@ -239,14 +240,19 @@
         @media (max-width: 900px) {
             .page {
                 grid-template-columns: 1fr;
-                gap: 32px;
-                padding: 24px 16px;
             }
             .left-panel {
                 position: static;
+                height: auto;
+                padding: 32px 24px;
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            }
+            .right-panel {
+                padding: 32px 24px;
+                min-height: auto;
             }
             .grid { grid-template-columns: 1fr !important; }
-            .form-panel { padding: 28px 20px; }
         }
     </style>
 </head>
@@ -268,7 +274,7 @@
         </div>
 
         <!-- Right Panel - Form -->
-        <div class="form-panel">
+        <div class="right-panel">
             <div class="form-header">
                 <h2>Your Details</h2>
                 <p>All fields required unless marked optional.</p>
@@ -332,7 +338,7 @@
 
                 <div class="full-width">
                     <label>Anything else the AI should know about you?</label>
-                    <textarea name="brain_dump" rows="5" placeholder="Drop anything here — your goals for the next 90 days, what you've tried that didn't work, services you offer, your ideal client, tech stack you use, what stage you're at... the more context, the better the advice."></textarea>
+                    <textarea name="brain_dump" rows="4" placeholder="Drop anything here — your goals for the next 90 days, what you've tried that didn't work, services you offer, your ideal client, tech stack you use..."></textarea>
                 </div>
 
                 <div class="error-msg" id="errorMsg"></div>
