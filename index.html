@@ -14,121 +14,77 @@
             font-family: 'Manrope', system-ui, sans-serif;
             background: #0B0A10;
             color: #D4D4D4;
-            -webkit-font-smoothing: antialiased;
-            line-height: 1.5;
-        }
-
-        /* ── Top Bar ── */
-        .top-bar {
-            max-width: 1080px;
-            margin: 0 auto;
-            padding: 32px 40px 0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 24px;
-        }
-        .top-bar .logo img { height: 28px; width: auto; }
-        .top-bar .progress {
-            font-size: 13px;
-            font-weight: 600;
-            color: #555;
-        }
-        .top-bar .progress span { color: #9333ea; }
-
-        /* ── Page Container ── */
-        .container {
-            max-width: 1080px;
-            margin: 0 auto;
-            padding: 28px 40px 60px;
-        }
-
-        /* ── Header Row ── */
-        .header-row {
-            display: flex;
-            align-items: flex-start;
-            gap: 32px;
-            margin-bottom: 36px;
-        }
-        .header-text { flex: 1; }
-        .header-text h1 {
-            font-size: 28px;
-            font-weight: 800;
-            color: #fff;
-            letter-spacing: -0.02em;
-            margin-bottom: 8px;
-        }
-        .header-text p {
-            font-size: 15px;
-            color: #666;
-            line-height: 1.6;
-            max-width: 480px;
-        }
-
-        /* Compact video thumbnail */
-        .video-thumb {
-            flex-shrink: 0;
-            width: 220px;
-            aspect-ratio: 16 / 9;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 10px;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            cursor: pointer;
-            transition: border-color 0.2s, background 0.2s;
+            -webkit-font-smoothing: antialiased;
         }
-        .video-thumb:hover { border-color: rgba(147,51,234,0.4); background: rgba(147,51,234,0.05); }
-        .video-thumb .play {
-            width: 32px; height: 32px; border-radius: 50%;
-            background: rgba(147,51,234,0.2); border: 1.5px solid rgba(147,51,234,0.4);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 12px; color: #9333ea;
-        }
-        .video-thumb span { font-size: 11px; color: #666; font-weight: 600; }
 
-        /* ── Legend ── */
-        .legend {
+        .wrapper {
+            width: 100%;
+            max-width: 520px;
+            padding: 48px 24px;
+        }
+
+        /* Logo */
+        .logo { text-align: center; margin-bottom: 32px; }
+        .logo img { width: 200px; height: auto; }
+
+        /* Title */
+        .title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .title h1 {
+            font-size: 24px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        .title p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Steps indicator */
+        .steps {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 36px;
+        }
+        .steps .step-bar {
+            flex: 1;
+            height: 3px;
+            border-radius: 3px;
+            background: rgba(255,255,255,0.08);
+            transition: background 0.3s;
+        }
+        .steps .step-bar.active { background: #9333ea; }
+        .steps .step-bar.done { background: #22c55e; }
+
+        /* Step label */
+        .step-label {
             font-size: 12px;
-            color: #444;
+            font-weight: 700;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
             margin-bottom: 24px;
         }
-        .legend .star { color: #9333ea; }
+        .step-label span { color: #9333ea; }
 
-        /* ── Section Headers ── */
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin: 32px 0 20px;
-        }
-        .section-header:first-of-type { margin-top: 0; }
-        .section-header h3 {
-            font-size: 16px;
-            font-weight: 700;
-            color: #E0E0E0;
-            white-space: nowrap;
-        }
-        .section-header::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: rgba(255,255,255,0.06);
-        }
+        /* Step panels */
+        .step { display: none; }
+        .step.active { display: block; }
 
-        /* ── Form Grid ── */
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 28px 24px;
+        /* Fields */
+        .field {
+            margin-bottom: 20px;
         }
-        .span-2 { grid-column: span 2; }
-        .span-3 { grid-column: 1 / -1; }
+        .field:last-child { margin-bottom: 0; }
 
-        /* ── Field ── */
-        .field {}
         .field label {
             display: block;
             font-size: 14px;
@@ -136,10 +92,10 @@
             color: #C0C0C0;
             margin-bottom: 8px;
         }
-        .field label .star { color: #9333ea; margin-left: 2px; }
 
         .field input,
-        .field select {
+        .field select,
+        .field textarea {
             width: 100%;
             height: 48px;
             padding: 0 16px;
@@ -150,45 +106,26 @@
             font-size: 15px;
             font-family: inherit;
             font-weight: 500;
-            transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+            transition: border-color 0.2s, box-shadow 0.2s;
         }
         .field textarea {
-            width: 100%;
-            min-height: 100px;
+            height: auto;
+            min-height: 120px;
             padding: 14px 16px;
-            background: rgba(255,255,255,0.04);
-            border: 1.5px solid rgba(255,255,255,0.1);
-            border-radius: 10px;
-            color: #E8E8E8;
-            font-size: 15px;
-            font-family: inherit;
-            font-weight: 500;
             resize: vertical;
             line-height: 1.5;
-            transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
         }
-
-        .field input:hover,
-        .field select:hover,
-        .field textarea:hover {
+        .field input:hover, .field select:hover, .field textarea:hover {
             border-color: rgba(255,255,255,0.18);
-            background: rgba(255,255,255,0.05);
         }
-        .field input:focus,
-        .field select:focus,
-        .field textarea:focus {
+        .field input:focus, .field select:focus, .field textarea:focus {
             outline: none;
             border-color: #9333ea;
             box-shadow: 0 0 0 3px rgba(147,51,234,0.12);
-            background: rgba(255,255,255,0.06);
         }
-
-        .field input::placeholder,
-        .field textarea::placeholder {
+        .field input::placeholder, .field textarea::placeholder {
             color: #444;
-            font-weight: 400;
         }
-
         .field select {
             appearance: none;
             cursor: pointer;
@@ -197,21 +134,13 @@
             background-position: right 16px center;
             padding-right: 40px;
         }
-        .field select option { background: #15131A; color: #E8E8E8; }
-
-        /* Helper text below fields */
+        .field select option { background: #15131A; }
         .field .helper {
             font-size: 13px;
             color: #555;
             margin-top: 6px;
             line-height: 1.4;
         }
-        .field .helper a {
-            color: #9333ea;
-            text-decoration: none;
-        }
-
-        /* Slack ID callout */
         .slack-callout {
             background: rgba(147,51,234,0.06);
             border: 1px solid rgba(147,51,234,0.15);
@@ -219,150 +148,171 @@
             padding: 10px 14px;
             margin-top: 8px;
             font-size: 13px;
-            color: #999;
+            color: #888;
             line-height: 1.5;
         }
-        .slack-callout strong { color: #C0C0C0; font-weight: 600; }
+        .slack-callout strong { color: #bbb; }
 
-        /* ── Validation ── */
-        .field input:invalid:not(:placeholder-shown),
-        .field select:invalid:not([data-touched]),
-        .field textarea:invalid:not(:placeholder-shown) {
-            /* only show after interaction */
-        }
-        .field.error input,
-        .field.error select,
-        .field.error textarea {
-            border-color: #ef4444;
-        }
-
-        /* ── Submit Area ── */
-        .submit-area {
-            margin-top: 40px;
+        /* Buttons */
+        .btn-row {
             display: flex;
-            align-items: center;
-            gap: 20px;
+            gap: 12px;
+            margin-top: 32px;
         }
-        .submit-btn {
-            height: 52px;
-            padding: 0 48px;
-            background: linear-gradient(135deg, #9333ea, #7c3aed);
-            color: #fff;
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
+        .btn {
+            height: 48px;
+            padding: 0 32px;
+            border-radius: 10px;
+            font-size: 15px;
             font-weight: 700;
             font-family: inherit;
             cursor: pointer;
             transition: all 0.2s;
-            box-shadow: 0 4px 20px rgba(147,51,234,0.3);
-            flex-shrink: 0;
+            border: none;
         }
-        .submit-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 28px rgba(147,51,234,0.45); }
-        .submit-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
-        .submit-note {
+        .btn-next {
+            flex: 1;
+            background: #9333ea;
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(147,51,234,0.25);
+        }
+        .btn-next:hover { background: #7c3aed; transform: translateY(-1px); }
+        .btn-back {
+            background: rgba(255,255,255,0.06);
+            color: #888;
+            border: 1.5px solid rgba(255,255,255,0.08);
+        }
+        .btn-back:hover { color: #ccc; border-color: rgba(255,255,255,0.15); }
+        .btn-submit {
+            flex: 1;
+            background: linear-gradient(135deg, #9333ea, #7c3aed);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(147,51,234,0.3);
+        }
+        .btn-submit:hover { transform: translateY(-1px); box-shadow: 0 6px 28px rgba(147,51,234,0.45); }
+        .btn-submit:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+
+        .skip-text {
+            text-align: center;
+            margin-top: 12px;
             font-size: 13px;
             color: #444;
-            line-height: 1.5;
         }
+        .skip-text a {
+            color: #777;
+            cursor: pointer;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        .skip-text a:hover { color: #aaa; }
+
+        /* Video placeholder */
+        .video-box {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: border-color 0.2s;
+        }
+        .video-box:hover { border-color: rgba(147,51,234,0.3); }
+        .video-box .play {
+            width: 36px; height: 36px; border-radius: 50%;
+            background: rgba(147,51,234,0.15); border: 1.5px solid rgba(147,51,234,0.35);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px; color: #9333ea;
+        }
+        .video-box span { font-size: 12px; color: #555; font-weight: 600; }
+
+        /* Success */
+        .success {
+            display: none;
+            text-align: center;
+            padding: 40px 0;
+        }
+        .success .check {
+            width: 56px; height: 56px; border-radius: 50%;
+            background: rgba(34,197,94,0.08);
+            border: 2px solid rgba(34,197,94,0.25);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px; margin: 0 auto 16px; color: #22c55e;
+        }
+        .success h2 { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+        .success p { font-size: 14px; color: #666; line-height: 1.6; }
 
         .error-msg {
             color: #ef4444;
             font-size: 13px;
             margin-top: 12px;
             display: none;
-            font-weight: 500;
-        }
-
-        /* ── Success ── */
-        .success {
-            display: none;
-            text-align: center;
-            padding: 80px 20px;
-        }
-        .success .check {
-            width: 60px; height: 60px; border-radius: 50%;
-            background: rgba(34,197,94,0.08);
-            border: 2px solid rgba(34,197,94,0.25);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 26px; margin: 0 auto 20px; color: #22c55e;
-        }
-        .success h2 { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 8px; }
-        .success p { color: #666; font-size: 15px; line-height: 1.6; max-width: 400px; margin: 0 auto; }
-
-        /* ── Mobile ── */
-        @media (max-width: 768px) {
-            .top-bar { padding: 24px 20px 0; }
-            .container { padding: 20px 20px 48px; }
-            .header-row { flex-direction: column; gap: 20px; }
-            .video-thumb { width: 100%; }
-            .form-grid { grid-template-columns: 1fr; }
-            .span-2, .span-3 { grid-column: 1; }
-            .submit-area { flex-direction: column; align-items: stretch; }
-            .submit-btn { width: 100%; }
-        }
-
-        @media (min-width: 769px) and (max-width: 1000px) {
-            .form-grid { grid-template-columns: 1fr 1fr; }
-            .span-3 { grid-column: 1 / -1; }
         }
     </style>
 </head>
 <body>
-
-    <!-- Top Bar -->
-    <div class="top-bar">
+    <div class="wrapper">
         <div class="logo"><img src="logo.png" alt="License & Scale" /></div>
-        <div class="progress"><span id="progressCount">0</span> of 8 completed</div>
-    </div>
 
-    <div class="container">
-        <!-- Header -->
-        <div class="header-row">
-            <div class="header-text">
-                <h1>Set up your AI Member Profile</h1>
-                <p>Takes 2 minutes. After this, Cam's AI will personalize every answer based on your niche, revenue, team, and goals.</p>
-            </div>
-            <div class="video-thumb" id="videoPlaceholder">
-                <div class="play">&#9654;</div>
-                <span>How to fill this in</span>
-            </div>
+        <div class="title">
+            <h1>Set up your AI Member Profile</h1>
+            <p>Cam's AI will use this to personalize every answer it gives you.</p>
         </div>
 
-        <p class="legend"><span class="star">*</span> = required field</p>
+        <div class="steps">
+            <div class="step-bar active" id="bar1"></div>
+            <div class="step-bar" id="bar2"></div>
+            <div class="step-bar" id="bar3"></div>
+            <div class="step-bar" id="bar4"></div>
+        </div>
 
         <form id="profileForm">
-            <!-- Identity -->
-            <div class="section-header"><h3>Identity</h3></div>
-            <div class="form-grid">
+            <!-- Step 1: Identity -->
+            <div class="step active" id="step1">
+                <div class="step-label"><span>Step 1</span> — Identity</div>
+
+                <div class="video-box" id="videoPlaceholder">
+                    <div class="play">&#9654;</div>
+                    <span>How to find your Slack ID (30 sec)</span>
+                </div>
+
                 <div class="field">
-                    <label>Slack Member ID <span class="star">*</span></label>
-                    <input type="text" name="slack_user_id" required placeholder="e.g. U08SQHXML5R" data-track />
+                    <label>Slack Member ID</label>
+                    <input type="text" name="slack_user_id" required placeholder="e.g. U08SQHXML5R" />
                     <div class="slack-callout">
-                        <strong>How to find this:</strong> Open Slack &rarr; click your profile picture (bottom left) &rarr; click the <strong>&hellip;</strong> menu &rarr; <strong>Copy member ID</strong>
+                        <strong>How to find this:</strong> Open Slack &rarr; click your profile picture &rarr; <strong>&hellip;</strong> &rarr; <strong>Copy member ID</strong>
                     </div>
                 </div>
                 <div class="field">
-                    <label>Full Name <span class="star">*</span></label>
-                    <input type="text" name="name" required placeholder="e.g. Sean Reynolds" data-track />
+                    <label>Full Name</label>
+                    <input type="text" name="name" required placeholder="e.g. Sean Reynolds" />
                 </div>
                 <div class="field">
-                    <label>Agency Name <span class="star">*</span></label>
-                    <input type="text" name="agency_name" required placeholder="e.g. Reynolds Media" data-track />
+                    <label>Agency Name</label>
+                    <input type="text" name="agency_name" required placeholder="e.g. Reynolds Media" />
+                </div>
+
+                <div class="btn-row">
+                    <button type="button" class="btn btn-next" onclick="goTo(2)">Next</button>
                 </div>
             </div>
 
-            <!-- Business -->
-            <div class="section-header"><h3>Business</h3></div>
-            <div class="form-grid">
+            <!-- Step 2: Business -->
+            <div class="step" id="step2">
+                <div class="step-label"><span>Step 2</span> — Business</div>
+
                 <div class="field">
-                    <label>Niche <span class="star">*</span></label>
-                    <input type="text" name="niche" required placeholder="e.g. Remodeling" data-track />
+                    <label>Niche</label>
+                    <input type="text" name="niche" required placeholder="e.g. Remodeling" />
                     <p class="helper">The vertical you serve — MedSpa, Roofing, Solar, etc.</p>
                 </div>
                 <div class="field">
-                    <label>Monthly Revenue <span class="star">*</span></label>
-                    <select name="monthly_revenue" required data-track>
+                    <label>Monthly Revenue</label>
+                    <select name="monthly_revenue" required>
                         <option value="" disabled selected>Pick your range</option>
                         <option value="$0 - Pre-revenue">$0 — Pre-revenue</option>
                         <option value="$1k - $5k">$1k — $5k / mo</option>
@@ -375,53 +325,66 @@
                     <p class="helper">Average over the last 3 months</p>
                 </div>
                 <div class="field">
-                    <label>Active Clients <span class="star">*</span></label>
-                    <input type="text" name="num_clients" required placeholder="e.g. 4" data-track />
+                    <label>Active Clients</label>
+                    <input type="text" name="num_clients" required placeholder="e.g. 4" />
                 </div>
+
+                <div class="btn-row">
+                    <button type="button" class="btn btn-back" onclick="goTo(1)">Back</button>
+                    <button type="button" class="btn btn-next" onclick="goTo(3)">Next</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Focus -->
+            <div class="step" id="step3">
+                <div class="step-label"><span>Step 3</span> — Focus</div>
+
                 <div class="field">
-                    <label>Retainer Per Client <span class="star">*</span></label>
-                    <input type="text" name="retainer_price" required placeholder="e.g. $2,500/mo" data-track />
+                    <label>Retainer Per Client</label>
+                    <input type="text" name="retainer_price" required placeholder="e.g. $2,500/mo" />
                     <p class="helper">What you charge each client monthly</p>
                 </div>
-                <div class="field span-2">
-                    <label>Current Team <span class="star">*</span></label>
-                    <input type="text" name="team_setup" required placeholder="e.g. Me + 1 VA + 1 closer" data-track />
-                    <p class="helper">Who's on your team — include roles and count</p>
+                <div class="field">
+                    <label>Current Team</label>
+                    <input type="text" name="team_setup" required placeholder="e.g. Me + 1 VA + 1 closer" />
+                    <p class="helper">Who's on your team — roles and headcount</p>
+                </div>
+                <div class="field">
+                    <label>Biggest Challenge Right Now</label>
+                    <textarea name="biggest_challenge" required placeholder="e.g. Can't close past 20% on sales calls. Leads go cold after first contact and I don't have a follow-up system."></textarea>
+                    <p class="helper">Be specific — the more detail, the better the AI can help.</p>
+                </div>
+
+                <div class="btn-row">
+                    <button type="button" class="btn btn-back" onclick="goTo(2)">Back</button>
+                    <button type="button" class="btn btn-next" onclick="goTo(4)">Next</button>
                 </div>
             </div>
 
-            <!-- Focus -->
-            <div class="section-header"><h3>Focus</h3></div>
-            <div class="form-grid">
-                <div class="field span-3">
-                    <label>Biggest Challenge Right Now <span class="star">*</span></label>
-                    <textarea name="biggest_challenge" required placeholder="e.g. Can't seem to close past 20% on sales calls. Leads go cold after first contact and I don't have a follow-up system." data-track></textarea>
-                    <p class="helper">Be specific — the more detail, the better the AI can help you.</p>
+            <!-- Step 4: Optional -->
+            <div class="step" id="step4">
+                <div class="step-label"><span>Step 4</span> — Optional Brain Dump</div>
+
+                <div class="field">
+                    <label>Anything else the AI should know about you?</label>
+                    <textarea name="brain_dump" rows="6" placeholder="90-day goals, what you've already tried, services you offer, ideal client, tech stack..."></textarea>
+                    <p class="helper">Not required — but the more you share, the smarter the AI gets.</p>
                 </div>
-            </div>
 
-            <!-- Optional -->
-            <div class="section-header"><h3>Optional</h3></div>
-            <div class="form-grid">
-                <div class="field span-3">
-                    <label>Brain Dump</label>
-                    <textarea name="brain_dump" rows="4" placeholder="Anything else — 90-day goals, what you've already tried, services you offer, ideal client profile, tech stack you use..."></textarea>
-                    <p class="helper">Not required, but the more context you give, the smarter the AI gets.</p>
+                <div class="error-msg" id="errorMsg"></div>
+
+                <div class="btn-row">
+                    <button type="button" class="btn btn-back" onclick="goTo(3)">Back</button>
+                    <button type="submit" class="btn btn-submit" id="submitBtn">Submit</button>
                 </div>
-            </div>
-
-            <div class="error-msg" id="errorMsg"></div>
-
-            <div class="submit-area">
-                <button type="submit" class="submit-btn" id="submitBtn">Submit Profile</button>
-                <p class="submit-note">You can update this anytime by re-submitting with the same Slack ID.</p>
+                <p class="skip-text">You can update this anytime by re-submitting.</p>
             </div>
         </form>
 
         <div class="success" id="successMsg">
             <div class="check">&#10003;</div>
             <h2>You're all set</h2>
-            <p>Cam's AI now knows your situation. Go ask it something in Slack — every answer will be personalized to you.</p>
+            <p>Cam's AI now knows your situation. Go ask it something in Slack — every answer will be personalized.</p>
         </div>
     </div>
 
@@ -429,24 +392,36 @@
         const SUPABASE_URL = 'https://rerxuznivlhckzubwnko.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJlcnh1em5pdmxoY2t6dWJ3bmtvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ5NzcwMzAsImV4cCI6MjA3MDU1MzAzMH0.tkVIN1OsToWtRSf-9yh9ZrT5c8nzcGciDbztkEQkgMg';
 
-        // Progress tracker
-        function updateProgress() {
-            const fields = document.querySelectorAll('[data-track]');
-            let filled = 0;
-            fields.forEach(f => {
-                if (f.tagName === 'SELECT') {
-                    if (f.value) filled++;
-                } else {
-                    if (f.value.trim()) filled++;
-                }
-            });
-            document.getElementById('progressCount').textContent = filled;
-        }
+        let current = 1;
 
-        document.querySelectorAll('[data-track]').forEach(f => {
-            f.addEventListener('input', updateProgress);
-            f.addEventListener('change', updateProgress);
-        });
+        function goTo(step) {
+            // Validate required fields in current step before moving forward
+            if (step > current) {
+                const currentFields = document.querySelectorAll(`#step${current} [required]`);
+                for (const f of currentFields) {
+                    if (!f.value.trim()) {
+                        f.focus();
+                        f.style.borderColor = '#ef4444';
+                        setTimeout(() => f.style.borderColor = '', 2000);
+                        return;
+                    }
+                }
+            }
+
+            document.getElementById(`step${current}`).classList.remove('active');
+            document.getElementById(`step${step}`).classList.add('active');
+
+            // Update bars
+            for (let i = 1; i <= 4; i++) {
+                const bar = document.getElementById(`bar${i}`);
+                bar.className = 'step-bar';
+                if (i < step) bar.classList.add('done');
+                if (i === step) bar.classList.add('active');
+            }
+
+            current = step;
+            window.scrollTo(0, 0);
+        }
 
         // Submit
         document.getElementById('profileForm').addEventListener('submit', async (e) => {
@@ -476,12 +451,13 @@
                 });
                 if (!resp.ok) throw new Error(await resp.text());
                 document.getElementById('profileForm').style.display = 'none';
+                document.querySelector('.steps').style.display = 'none';
                 document.getElementById('successMsg').style.display = 'block';
             } catch (err) {
                 errorMsg.textContent = 'Something went wrong. Please try again.';
                 errorMsg.style.display = 'block';
                 btn.disabled = false;
-                btn.textContent = 'Submit Profile';
+                btn.textContent = 'Submit';
                 console.error(err);
             }
         });
